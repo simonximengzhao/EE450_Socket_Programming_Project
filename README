@@ -1,0 +1,98 @@
+EE450_Socket_Project
+Name: Ximeng Zhao
+Student ID: 4624150936
+
+What you have done in the assignment.
+
+For this project, I created four programs to utilize socket programming. The purpose
+is to process two data file, which contains several countries and the users within the
+listed country. Each user has some or no connections with the other users in the country.
+Server A and server B will process two set of data files and send the list to the main server.
+The client will ask for user input and forward these inputs, the user id and the country
+name, to the main server and asking for friend recommendation. A friend is an unconnected
+user in the same country who may or may not have some mutual friends. The main server
+will send the requested country and user id to the two sub servers. Then, either server A
+or server B will find a friend for the requested user in the requested country. The final
+recommendation will be forwarded to the client.
+
+What your code files are and what each one of them does. (Please do not repeat the
+project description, just name your code files and briefly mention what they do).
+
+Server A/server B: process the data file and send the list of countries to the main server.
+Process the requested user id within the requested country and find a friend for the user.
+Main server: receive the list of countries from the sub servers. receive the country and user
+request from the client. Forward the friend recommendation to the client.
+Client: Ask user to input a country name and an user id to forward to the main server for
+friend recommendation.
+
+The format of all the messages exchanged.
+
+Server A/B:
+"The server A/B is up and running using UDP on port <server
+A port number>"
+"The server A/B has sent a country list to Main Server"
+"The server A/B has received request for finding possible
+friends of User<user ID> in <Country Name>"
+"User<user ID> does not show up in <Country Name>"
+"The server A/B has sent “User<user ID> not found” to Main
+Server"
+"The server A/B is searching possible friends for User<user
+ID> …"
+"Here are the results: User<user ID1>, User<user ID2>..."
+"The server A/B has sent the result(s) to Main Server"
+
+Main server:
+"The Main server is up and running."
+"The Main server has received the country list from server
+A using UDP over port <Main server UDP port number>"
+"The Main server has received the country list from server
+B using UDP over port <Main server UDP port number>"
+"Server A | Server B
+<Country Name 1> | <Country Name 3>
+<Country Name 2> |"
+"The Main server has received the request on User <user
+ID> in <Country Name> from client<client ID> using
+TCP over port <Main server TCP port number>"
+"<Country Name> does not show up in server A&B"
+"The Main Server has sent “Country Name: Not found” to
+client1/2 using TCP over port <Main server TCP port
+number>"
+"<Country Name> shows up in server A/B"
+"The Main Server has sent request from User <user ID> to
+server A/B using UDP over port <Main server UDP port
+number>"
+"The Main server has received searching result(s) of User
+<user ID> from server<A/B>"
+"The Main Server has sent searching result(s) to client
+using TCP over port <Main Server TCP port number>"
+"The Main server has received “User ID: Not found” from
+server <A/B>"
+"The Main Server has sent error to client using TCP over
+<Main Server UDP port number>"
+
+Client:
+"The client is up and running"
+"Please enter the User ID:"
+"Please enter the Country Name:"
+"Client has sent User<user ID> and <Country Name> to
+Main Server using TCP"
+"<Country Name> not found"
+"User<user ID> not found"
+"Client has received results from Main Server:"
+"User<user ID1>, User<user ID2> is/are possible friend(s)
+of User<user ID> in <Country Name>"
+
+Any idiosyncrasy of your project. It should say under what conditions the project
+fails, if any.
+
+For client terminal, you have to input a number for user id, and a string for country name.
+Otherwise, the code won't be executed correctly.
+If there is an exit zombies process, it will show address is already used. You need to kill
+the zombie process first and then run.
+
+Reused Code: Did you use code from anywhere for your project? If not, say so. If
+so, say what functions and where they're from. (Also identify this with a comment in
+the source code.)
+
+TCP and UDP socket initialization, creating, binding, accepting, sending, and receiving
+using socket are all from Beej's Tutorial of socket programming.
